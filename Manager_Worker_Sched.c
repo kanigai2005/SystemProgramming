@@ -42,7 +42,7 @@ static int __init my_sched_init(void){
 static void __exit my_sched_exit(void){
 	int i;
 	kthread_stop(manager_thread);
-	for(i=0;i<3;i++){
+	for(i=0;i<5;i++){
 		kthread_stop(workers[i]);
 	}
 }
