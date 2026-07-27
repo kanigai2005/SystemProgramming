@@ -2,13 +2,13 @@
 #include<linux/interrupt.h>
 
 #define IRQ 1
-static void tasklet_bottom_half(unsigned long data){
+static void tasklet_bottom_half(struct tasklet_struct *t){
 	pr_info("Tasklet : bottomhalf");
 }
 
-DECLARE_TASKLET_OLD(my_tasklet,tasklet_bottom_half);
+DECLARE_TASKLET(my_tasklet,tasklet_bottom_half);
 
-static irqreturn_t top_half(int irq , void *dev_id){
+static irqreturn_t top_half(int irq , void *dev_id){ 
 	tasklet_schedule(&my_tasklet);
 	return IRQ_HANDLED;
 }
